@@ -25,7 +25,7 @@ namespace BayesianChangePoint
 
             Range n = new Range(disaster_data.Length).Named("years_idx");
 
-            var switchpoint = Variable.DiscreteUniform(disaster_data.Length).Named("switchpoint");
+            var switchpoint = Variable.DiscreteUniform(n).Named("switchpoint");
 
             var early_rate = Variable.Exp(1).Named("early_rate");
             var late_rate = Variable.Exp(1).Named("late_rate"); ;
