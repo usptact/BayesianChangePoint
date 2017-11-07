@@ -1,7 +1,7 @@
 # Coal Mining Disaster switchpoint inference
 Bayesian Change Point detection using Infer.NET
 
-The model infers from data the likely switchpoint using disaster count per year alone.
+The model infers from data the likely switchpoint using disaster count per year alone. The model is inspired from PyMC3 documentation http://docs.pymc.io/notebooks/getting_started.html#Case-study-2:-Coal-mining-disasters
 
 The idea is to model the data sequence before a switchpoint using a Poisson random variable parametrized with \lambda_early. The data points after the switchpoint are modeled with another Poisson random variable but with potentially different \lambda_late.
 
