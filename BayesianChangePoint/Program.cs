@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.ML.Probabilistic.Models;
 using Microsoft.ML.Probabilistic.Distributions;
 
@@ -40,9 +40,9 @@ namespace BayesianChangePoint
                 using (ForEachBlock block = Variable.ForEach(n))
                 {
                     using (Variable.If(switchpoint > block.Index))
-                        data[n] = Variable.Poisson(early_rate);
+                        data[block.Index] = Variable.Poisson(early_rate);
                     using (Variable.IfNot(switchpoint > block.Index))
-                        data[n] = Variable.Poisson(late_rate);
+                        data[block.Index] = Variable.Poisson(late_rate);
                 }
             }
 
@@ -57,7 +57,7 @@ namespace BayesianChangePoint
             var switchpointMarginal = engine.Infer<Discrete>(switchpoint);
             Console.WriteLine(switchpointMarginal);
 
-            Console.ReadKey();
+            // Console.ReadKey();
         }
     }
 }
