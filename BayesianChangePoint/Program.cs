@@ -26,7 +26,7 @@ namespace BayesianChangePoint
                                    3, 3, 1, 2, 2, 1, 1, 1, 1, 2, 4, 2, 0, 0, 1, 4,
                                    0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1 };
 
-            Range n = new Range(disaster_data.Length).Named("years_idx");
+            Microsoft.ML.Probabilistic.Models.Range n = new Microsoft.ML.Probabilistic.Models.Range(disaster_data.Length).Named("years_idx");
 
             var switchpoint = Variable.DiscreteUniform(n.Clone()).Named("switchpoint");
             switchpoint.Name = nameof(switchpoint);
