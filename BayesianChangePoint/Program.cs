@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.ML.Probabilistic.Models;
 using Microsoft.ML.Probabilistic.Distributions;
 
@@ -26,7 +26,7 @@ namespace BayesianChangePoint
                                    3, 3, 1, 2, 2, 1, 1, 1, 1, 2, 4, 2, 0, 0, 1, 4,
                                    0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1 };
 
-            Range n = new Range(disaster_data.Length).Named("years_idx");
+            Microsoft.ML.Probabilistic.Models.Range n = new Microsoft.ML.Probabilistic.Models.Range(disaster_data.Length).Named("years_idx");
 
             var switchpoint = Variable.DiscreteUniform(n.Clone()).Named("switchpoint");
             switchpoint.Name = nameof(switchpoint);
@@ -40,9 +40,9 @@ namespace BayesianChangePoint
                 using (ForEachBlock block = Variable.ForEach(n))
                 {
                     using (Variable.If(switchpoint > block.Index))
-                        data[n] = Variable.Poisson(early_rate);
+                        data[block.Index] = Variable.Poisson(early_rate);
                     using (Variable.IfNot(switchpoint > block.Index))
-                        data[n] = Variable.Poisson(late_rate);
+                        data[block.Index] = Variable.Poisson(late_rate);
                 }
             }
 
@@ -57,7 +57,7 @@ namespace BayesianChangePoint
             var switchpointMarginal = engine.Infer<Discrete>(switchpoint);
             Console.WriteLine(switchpointMarginal);
 
-            Console.ReadKey();
+            // Console.ReadKey();
         }
     }
 }
