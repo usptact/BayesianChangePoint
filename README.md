@@ -2,7 +2,7 @@
 
 This repository implements Bayesian change point detection for the classic "coal mining disasters" time series using Microsoft's open-source probabilistic programming library (Infer.NET, published as `Microsoft.ML.Probabilistic`). The app estimates the most likely year where the Poisson rate of disasters changes.
 
-The implementation lives in `BayesianChangePoint/Program.cs` and targets .NET 8 with an SDK-style project.
+The implementation lives in `BayesianChangePoint/Program.cs` and targets .NET 10 with an SDK-style project.
 
 ## Model
 
@@ -21,7 +21,7 @@ Notes:
 
 ## How to build and run
 
-Requires .NET SDK 8.0+.
+Requires .NET SDK 10.0+.
 
 Using the dotnet CLI:
 1. Restore and build
@@ -45,7 +45,7 @@ When the app runs, it will print the posterior distribution over the switch poin
 
 ## Notes and potential improvements
 
-- Dependencies use the latest available `Microsoft.ML.Probabilistic` packages via `PackageReference`.
+- Dependencies are pinned to the latest `Microsoft.ML.Probabilistic` release (`0.4.2504.701`) via `PackageReference`.
 - The program previously blocked on `Console.ReadKey()`; it has been removed for headless runs.
 - There are no automated tests; adding unit tests for the model structure and basic inference would improve maintainability.
 
